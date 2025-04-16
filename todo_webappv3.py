@@ -212,7 +212,7 @@ HTML_TEMPLATE = """
 </html>
 """
 
-@todo_webappv3('/')
+@todo_webappv3.route('/')
 def index():
     todo.load_tasks()
     field = request.args.get('field')
@@ -220,7 +220,7 @@ def index():
     tasks = todo.filter_tasks(field, value)
     return render_template_string(HTML_TEMPLATE, tasks=tasks)
 
-@todo_webappv3('/add', methods=['POST'])
+@todo_webappv3.route('/add', methods=['POST'])
 def add():
     title = request.form['title']
     priority = request.form.get('priority', 'Medium')
