@@ -66,6 +66,7 @@ flask-todo-app/
 ├── todo.csv            # Stores all tasks (each task is a row)
 ├── requirements.txt    # List of required Python packages
 └── README.md           # Project documentation
+```
 
 ---
 
@@ -75,7 +76,7 @@ flask-todo-app/
 Buy groceries,High,0,Home,2025-04-20
 Finish Flask project,Medium,1,Work,2025-04-16
 Call mom,Low,0,Personal,
-
+```
 ---
 
 ## 📌 Use Cases
