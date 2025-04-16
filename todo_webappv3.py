@@ -3,7 +3,7 @@ import csv
 import os
 from datetime import datetime
 
-app = Flask(__name__)
+todo_webappv3 = Flask(__name__)
 
 class Task:
     def __init__(self, title, priority='Medium', done='0', category='General', due_date=''):
@@ -212,7 +212,7 @@ HTML_TEMPLATE = """
 </html>
 """
 
-@app.route('/')
+@todo_webappv3('/')
 def index():
     todo.load_tasks()
     field = request.args.get('field')
@@ -220,7 +220,7 @@ def index():
     tasks = todo.filter_tasks(field, value)
     return render_template_string(HTML_TEMPLATE, tasks=tasks)
 
-@app.route('/add', methods=['POST'])
+@todo_webappv3('/add', methods=['POST'])
 def add():
     title = request.form['title']
     priority = request.form.get('priority', 'Medium')
@@ -230,17 +230,17 @@ def add():
     todo.create_task(title, priority, '0', category, due_date)
     return redirect(url_for('index'))
 
-@app.route('/delete/<title>')
+@todo_webappv3.route('/delete/<title>')
 def delete(title):
     todo.load_tasks()
     todo.delete_task(title)
     return redirect(url_for('index'))
 
-@app.route('/done/<title>')
+@todo_webappv3.route('/done/<title>')
 def mark_done(title):
     todo.load_tasks()
     todo.update_task(title, 'done', '1')
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    todo_webappv3.run(debug=True, host='0.0.0.0', port=5000)
